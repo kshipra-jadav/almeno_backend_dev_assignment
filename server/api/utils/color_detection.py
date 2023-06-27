@@ -6,10 +6,17 @@
 import cv2
 import numpy as np
 
-def analyse_colors(filepath):
 
-    # extract the given image
-    image = cv2.imread(filepath)
+def analyse_colors(filepath=None, image_array=None):
+
+    # my code starts :- 
+    if filepath:
+        print("filepath")
+        image = cv2.imread(filepath)
+    else:
+        print("image arr")
+        image = image_array
+    # my code ends
 
 
     # I am trying to isolate the whole image by cropping the image 
@@ -22,6 +29,7 @@ def analyse_colors(filepath):
     # RESIZING THE IMAGE SO THAT SEGMENTATION IS EASIER
     temp_image = cv2.resize(temp_image, dsize=(width * 2, height))
     image=temp_image
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # so that the function returns array of RGB values and not BGR values
 
     # SEGEMENT X,Y COORDINATES
     x_position = width // 2
@@ -42,7 +50,7 @@ def analyse_colors(filepath):
         average_segment_color = average_segment_color.astype(int)
 
         # LOGGING THE CALCULATED VALUES
-        print(f"Average color: R={average_segment_color[2]}, G={average_segment_color[1]},  B={average_segment_color[0]}")
+        # print(f"Average color: R={average_segment_color[0]}, G={average_segment_color[1]},  B={average_segment_color[2]}")
         average_strip_color_list.append(average_segment_color)
         y_position+=next_segment
     
@@ -54,5 +62,5 @@ def analyse_colors(filepath):
     return rgb_values
 
 if __name__ == "__main__":
-    rgb_vals = analyse_colors("../strip_images/image1.jpg")
+    rgb_vals = analyse_colors(filepath="../../../strip_images/image1.jpg")
     print(rgb_vals)

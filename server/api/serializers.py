@@ -4,4 +4,4 @@ from .models import ColourCode
 class ColourCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ColourCode
-        fields = ("__all__")
+        fields = '__all__'
