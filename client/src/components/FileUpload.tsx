@@ -33,7 +33,7 @@ const FileUpload: FC<FileUploadProps> = ({ setUrineStripColours }) => {
   };
   return (
     <>
-      <div className="flex flex-col w-2/4">
+      <div className="flex flex-col w-full px-5">
         <div className="flex items-center justify-center w-full">
           <label
             htmlFor="dropzone-file"

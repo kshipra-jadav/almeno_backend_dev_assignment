@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <div className="text-6xl text-center">Urine Strip Analyzer</div>
-      <div className="flex flex-row mt-5 w-full h-screen position: absolute">
+      <div className="grid grid-cols-2 mt-5 w-full h-screen">
         <FileUpload setUrineStripColours={setUrineStripColours} />
         {urineStripColours && (
           <ColourPreview UrineStripColours={urineStripColours} />
