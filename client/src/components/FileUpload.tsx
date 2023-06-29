@@ -1,9 +1,11 @@
 import { ChangeEvent, FC, MouseEvent, useState } from "react";
 import { axiosInstance } from "../utils/axiosConfig.ts";
+import { ColourCodesResponse, FileUploadProps } from "../utils/types.ts";
 
-const FileUpload: FC = () => {
+const FileUpload: FC<FileUploadProps> = ({ setUrineStripColours }) => {
   const [fileName, setFileName] = useState("");
   const [uploadedFile, setUploadedFile] = useState<File>();
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e?.target?.files;
     if (files) {
@@ -21,8 +23,11 @@ const FileUpload: FC = () => {
       const formData = new FormData();
       formData.append("urine_strip", uploadedFile);
       console.log(uploadedFile);
-      const { data } = await axiosInstance.post("/colour-codes/", formData);
-      console.log(data);
+      const { data } = await axiosInstance.post<ColourCodesResponse>(
+        "/colour-codes/",
+        formData
+      );
+      setUrineStripColours(data.urine_strip_colours);
     }
   };
   return (
