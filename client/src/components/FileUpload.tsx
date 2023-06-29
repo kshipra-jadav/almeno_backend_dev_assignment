@@ -27,6 +27,7 @@ const FileUpload: FC<FileUploadProps> = ({ setUrineStripColours }) => {
         "/colour-codes/",
         formData
       );
+      // console.log(data.urine_strip_colours);
       setUrineStripColours(data.urine_strip_colours);
     }
   };
