@@ -13,7 +13,6 @@ const ColourPreview: FC<ColourPreviewProps> = ({ UrineStripColours }) => {
         {Object.entries(UrineStripColours).map((item) => {
           const [colour, rgb] = item;
           const hex = getHexClassName(rgb);
-          console.log(hex);
           return (
             <div className="grid text-center">
               <div

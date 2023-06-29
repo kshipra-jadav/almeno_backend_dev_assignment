@@ -1,10 +1,18 @@
-import { ChangeEvent, FC, MouseEvent, useState } from "react";
+import { ChangeEvent, FC, MouseEvent, useEffect, useState } from "react";
 import { axiosInstance } from "../utils/axiosConfig.ts";
 import { ColourCodesResponse, FileUploadProps } from "../utils/types.ts";
 
 const FileUpload: FC<FileUploadProps> = ({ setUrineStripColours }) => {
   const [fileName, setFileName] = useState("");
   const [uploadedFile, setUploadedFile] = useState<File>();
+  const [imageURL, setImageURL] = useState("");
+
+  useEffect(() => {
+    if (uploadedFile) {
+      const objectURL = URL.createObjectURL(uploadedFile);
+      setImageURL(objectURL);
+    }
+  }, [uploadedFile]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e?.target?.files;
@@ -72,7 +80,7 @@ const FileUpload: FC<FileUploadProps> = ({ setUrineStripColours }) => {
             />
           </label>
         </div>
-        <div className="text-xl mt-5 flex flex-row ml-2">
+        <div className="text-xl mt-5 flex flex-row ml-2 max-h-8">
           {fileName && (
             <div>
               <p>Uploaded Image :- {fileName}</p>
@@ -82,6 +90,7 @@ const FileUpload: FC<FileUploadProps> = ({ setUrineStripColours }) => {
               >
                 Upload File
               </button>
+              <img src={imageURL} className="w-1/4 mt-2" alt="" />
             </div>
           )}
         </div>
