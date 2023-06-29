@@ -30,7 +30,6 @@ const FileUpload: FC<FileUploadProps> = ({ setUrineStripColours }) => {
     if (uploadedFile) {
       const formData = new FormData();
       formData.append("urine_strip", uploadedFile);
-      console.log(uploadedFile);
       const { data } = await axiosInstance.post<ColourCodesResponse>(
         "/colour-codes/",
         formData

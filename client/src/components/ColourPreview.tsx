@@ -14,7 +14,7 @@ const ColourPreview: FC<ColourPreviewProps> = ({ UrineStripColours }) => {
           const [colour, rgb] = item;
           const hex = getHexClassName(rgb);
           return (
-            <div className="grid text-center">
+            <div className="grid text-center" key={`${hex}`}>
               <div
                 style={{
                   backgroundColor: hex,
